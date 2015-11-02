@@ -1,0 +1,8 @@
+import better.files._
+import java.io.{File => JFile}
+
+object Base {
+    val f = root / "home/yo/Downloads/proj"
+   f.size
+   f.isDirectory
+}

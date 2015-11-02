@@ -3,22 +3,31 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#657b83"])
  '(background-color "#002b36")
  '(background-mode dark)
  '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
  '(cursor-color "#839496")
- '(custom-enabled-themes (quote (solarized-dark)))
- '(custom-safe-themes (quote ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a5beb9b1d6dc23dd8a3c204c159c9a5f1e0115ff14b5b8579d6f3ede4f3b3aee" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(custom-enabled-themes (quote (darktooth)))
+ '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "4ab5c6fb8ca91cd79bb12bb79a5614fa4b00d1261c139859045a9c37374c51be" "76ed87b94879300b2cb1b3ecb446b19c479c7874022b8db702c722072664c74e" "790e74b900c074ac8f64fa0b610ad05bcfece9be44e8f5340d2d94c1e47538de" "6a7686db843029a1ca8beec8aadbf094dac5ae592198bd124262fdfeac851d2a" "4cdbdc86cbd7c73c0896364432aed41c9a37078c33b58f2ca49f21eaf77a36af" "47ac4658d9e085ace37e7d967ea1c7d5f3dfeb2f720e5dec420034118ba84e17" default)))
+ '(fci-rule-color "#232A2F")
  '(foreground-color "#839496")
  '(markdown-command "rdiscount")
  '(markdown-command-needs-filename nil)
- '(tool-bar-mode nil))
+ '(pos-tip-background-color "#36473A")
+ '(pos-tip-foreground-color "#FFFFC8")
+ '(projectile-indexing-method (quote alien))
+ '(tool-bar-mode nil)
+ '(vc-annotate-background "#2B3B40")
+ '(vc-annotate-color-map (quote ((20 . "#74CBC4") (40 . "#74CBC4") (60 . "#C2E982") (80 . "#FFC400") (100 . "#C792EA") (120 . "#C792EA") (140 . "#546D7A") (160 . "#546D7A") (180 . "#FF516D") (200 . "#9FC59F") (220 . "#859900") (240 . "#F77669") (260 . "#FF516D") (280 . "#82B1FF") (300 . "#82B1FF") (320 . "#82B1FF") (340 . "#D9F5DD") (360 . "#FFCB6B"))))
+ '(vc-annotate-very-old-color "#FFCB6B"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "MonacoB2" :foundry "b&h" :slant normal :weight bold :height 88 :width normal)))))
+ '(default ((t (:family "Monaco" :foundry "unknown" :slant normal :weight normal :height 82 :width normal)))))
 
 
 (require 'package)
@@ -38,7 +47,7 @@
 (setq-default column-number-mode t)
 
 (tool-bar-mode -1)
-
+(setq projectile-indexing-method 'alien)
 ;;(require 'indent-guide)
 ;;(indent-guide-global-mode)
 ; General Auto-Complete
@@ -73,7 +82,7 @@
 
 (evil-leader/set-key "v" 'insert-register)
 (evil-leader/set-key "c" 'copy-to-register)
-
+(evil-leader/set-key "aj" 'ace-jump-word-mode)
 
 (require 'evil)
 (evil-mode 1)
@@ -83,7 +92,7 @@
 (require 'evil-visualstar)
 
 
-(load-theme 'solarized-dark)
+;;(load-theme 'solarized-dark)
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
@@ -175,6 +184,10 @@
 (add-to-list 'exec-path "/usr/local/bin")
 (global-set-key [f9] 'cider-jack-in)
 (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
+;;(require 'json-pretty-print)
+(add-to-list 'load-path "/home/yo/.emacs.d")
+    (require 'ace-jump-mode)
+    (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 (require 'auto-complete-config)
 (ac-config-default)
@@ -230,7 +243,7 @@
 (evil-leader/set-key "sed" 'skewer-eval-defun)
 (evil-leader/set-key "slf" 'skewer-load-buffer)
 (evil-leader/set-key  "ssr" 'skewer-repl)
-(evil-leader/set-key "ss" 'save-buffer)
+(evil-leader/set-key "ssb" 'save-buffer)
 ;;(global-set-key (kbd "C-s C-s") 'save-buffer)
 ;;(global-set-key (kbd "C-c C-c") 'kill-ring-save)
 (require 'autopair)
@@ -243,10 +256,12 @@
 (require 'powerline)
 (require 'powerline-evil)
 ; colors...
-(setq powerline-color1 "#222")      ;; dark grey; 
-(setq powerline-color2 "#444")      ;; slightly lighter grey
+;;(setq powerline-color1 "#222")      ;; dark grey; 
+;;(setq powerline-color1 "DarkOrange")      ;; dark grey; 
+;;(setq powerline-color2 "#444")      ;; slightly lighter grey
+;;(setq powerline-color2 "deep sky blue")      ;; slightly lighter grey
 ;; shape...
-(setq powerline-arrow-shape 'arrow) ;; mirrored arrows, 
+;;(setq powerline-arrow-shape 'arrow) ;; mirrored arrows, 
 ;; see below for the shape options
 (setq tab-width 4)
 (add-to-list 'load-path "/home/yo/Downloads/ensime_2.10.0-RC3-0.9.8.2/elisp")
@@ -293,7 +308,36 @@
 ;;         (yas-expand)))))
 ;; ;
 ;; (define-key yas-ido-expand (kbd "<C-tab>")     'yas-ido-expand)
-(set-face-bold-p 'bold 2)
+
+;;CAMBIAR (set-face-bold-p 'bold 2)
+(require 'hideshowvis)
+(require 'indent-guide)
+;;instalar shell-pop rest  
+;;anzu
+;;(anzu-mode +1)
+;; '(custom-enabled-themes (quote (lavender)))
+
+
+;;(electric-pair-mode 1)
+;;'(custom-enabled-themes (quote (atom-one-dark)))
+'(custom-enabled-themes (quote (aurora)))
+
+;;(load-theme 'atom-one-dark t)
+(load-theme 'aurora t)
+
+(set-face-bold-p 'bold nil)
+ (mapc
+  (lambda (face)
+    (set-face-attribute face nil :weight 'normal :underline nil))
+  (face-list))
+(menu-bar-mode -1)
+
+(require 'powerline)
+;; colors...
+(setq powerline-color1 "#222")      ;; dark grey; 
+(setq powerline-color2 "#444")      ;; slightly lighter grey
+;; shape...
+(setq powerline-arrow-shape 'arrow) ;; mirrored arrows,
 
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
@@ -301,4 +345,7 @@
   (local-set-key (kbd "RET") 'newline-and-indent)))
 ;;
 ;;
-
+(add-hook 'prog-mode-hook
+      '(lambda ()
+         (when (derived-mode-p 'rust-mode) 
+	 (ggtags-mode 1))))

@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (powerline-evil-face) "powerline-evil" "powerline-evil.el"
-;;;;;;  (21595 57810 391545 718000))
+;;;;;;  (22070 16847 89373 738000))
 ;;; Generated autoloads from powerline-evil.el
 
 (autoload 'powerline-evil-face "powerline-evil" "\
@@ -16,7 +16,7 @@ Function to select appropriate face based on `evil-state'.
 
 ;;;### (autoloads (powerline-evil-vim-color-theme powerline-evil-vim-theme
 ;;;;;;  powerline-evil-center-color-theme) "powerline-evil-themes"
-;;;;;;  "powerline-evil-themes.el" (21595 57810 335545 990000))
+;;;;;;  "powerline-evil-themes.el" (22070 16847 45374 539000))
 ;;; Generated autoloads from powerline-evil-themes.el
 
 (autoload 'powerline-evil-center-color-theme "powerline-evil-themes" "\
@@ -36,8 +36,8 @@ Powerline's Vim-like mode-line with evil state at the beginning in color.
 
 ;;;***
 
-;;;### (autoloads nil nil ("powerline-evil-pkg.el") (21595 57810
-;;;;;;  463397 854000))
+;;;### (autoloads nil nil ("powerline-evil-pkg.el") (22070 16847
+;;;;;;  158812 871000))
 
 ;;;***
 

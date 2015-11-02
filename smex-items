@@ -1,18 +1,18 @@
 
 ;; ----- smex-history -----
 (
- javascript-mode
- evil-mode
- package-list-packages
+ tern-get-type
  package-install
- indent-region
- paredit-mode
- cider-jack-in
+ tern-ac-complete
+ auto-complete-mode
+ tern-mode
+ helm-ag
+ ag
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 46)
+ (package-install . 74)
  (org-reload . 1)
  (load-file . 1)
  (package-menu-mode . 5)
@@ -58,7 +58,7 @@
  (Buffer-menu-select . 1)
  (scala-mode . 6)
  (find-file . 27)
- (indent-guide-mode . 4)
+ (indent-guide-mode . 5)
  (highlight-indentation-mode . 2)
  (projectile-find-file-in-known-projects . 2)
  (twit . 1)
@@ -80,19 +80,19 @@
  (skewer-eval-print-last-expression . 1)
  (js2-mode . 2)
  (find-file-literally . 4)
- (powerline-reset . 2)
- (powerline-vim-theme . 1)
- (powerline-nano-theme . 1)
- (powerline-default-theme . 1)
+ (powerline-reset . 4)
+ (powerline-vim-theme . 5)
+ (powerline-nano-theme . 2)
+ (powerline-default-theme . 2)
  (powerline-center-evil-theme . 1)
  (org-mode . 1)
  (org-toggle-checkbox . 2)
  (projectile-recentf . 1)
  (paredit-mode . 4)
- (customize . 1)
- (tern-mode . 2)
- (tern-get-type . 1)
- (tern-ac-complete . 1)
+ (customize . 2)
+ (tern-mode . 4)
+ (tern-get-type . 10)
+ (tern-ac-complete . 4)
  (emacs-lisp-mode . 1)
  (ensime-connect . 4)
  (ac-complete-yasnippet . 1)
@@ -109,7 +109,7 @@
  (customize-mode . 2)
  (org-clock-menu . 1)
  (customize-face . 1)
- (eval-buffer . 7)
+ (eval-buffer . 45)
  (rainbow-mode . 2)
  (rainbow-delimiters-mode . 7)
  (customize-group . 2)
@@ -118,6 +118,38 @@
  (jsx-mode . 1)
  (evil-mode . 2)
  (javascript-mode . 3)
- (package-list-packages . 5)
+ (package-list-packages . 6)
  (indent-region . 1)
+ (restclient-mode . 2)
+ (eval-expression . 4)
+ (sublimity-mode . 1)
+ (hide-body . 2)
+ (hide-subtree . 1)
+ (hs-hide-block . 1)
+ (org-hide-block-toggle . 1)
+ (package-menu-mark-delete . 1)
+ (hideshowvis-enable . 3)
+ (shell-pop . 2)
+ (ack . 3)
+ (ack-mode . 1)
+ (ack-find-file . 2)
+ (dired . 4)
+ (dired-create-directory . 3)
+ (menu-bar-mode . 7)
+ (anzu-replace-at-cursor-thing . 5)
+ (anzu-query-replace-regexp . 7)
+ (rename-file . 1)
+ (dired-do-rename . 1)
+ (dired-find-file . 1)
+ (electric-pair-mode . 1)
+ (skeleton-pair-insert-maybe . 1)
+ (anzu-query-replace . 1)
+ (evil-open-fold . 1)
+ (powerline-revert . 1)
+ (evil-shift-right-line . 1)
+ (list-colors-display . 1)
+ (projectile-ack . 1)
+ (ag . 2)
+ (helm-ag . 2)
+ (auto-complete-mode . 2)
 )
