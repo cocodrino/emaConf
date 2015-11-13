@@ -51,10 +51,10 @@
 ;;(require 'indent-guide)
 ;;(indent-guide-global-mode)
 ; General Auto-Complete
-(require 'auto-complete-config)
-(setq ac-delay 0.0)
-(setq ac-quick-help-delay 0.5)
-(ac-config-default)
+; (require 'auto-complete-config)
+; (setq ac-delay 0.0)
+; (setq ac-quick-help-delay 0.5)
+; (ac-config-default)
 
 ;; ac-nrepl (Auto-complete for the nREPL)
 (require 'ac-nrepl)
@@ -189,8 +189,8 @@
     (require 'ace-jump-mode)
     (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
-(require 'auto-complete-config)
-(ac-config-default)
+; (require 'auto-complete-config)
+; (ac-config-default)
 
 (require 'ac-nrepl)
 
@@ -319,11 +319,11 @@
 
 
 ;;(electric-pair-mode 1)
-;;'(custom-enabled-themes (quote (atom-one-dark)))
-'(custom-enabled-themes (quote (aurora)))
+'(custom-enabled-themes (quote (atom-one-dark)))
+;;'(custom-enabled-themes (quote (aurora)))
 
-;;(load-theme 'atom-one-dark t)
-(load-theme 'aurora t)
+(load-theme 'atom-one-dark t)
+;;(load-theme 'aurora t)
 
 (set-face-bold-p 'bold nil)
  (mapc
@@ -345,7 +345,106 @@
   (local-set-key (kbd "RET") 'newline-and-indent)))
 ;;
 ;;
-(add-hook 'prog-mode-hook
-      '(lambda ()
-         (when (derived-mode-p 'rust-mode) 
-	 (ggtags-mode 1))))
+;;(add-hook 'prog-mode-hook
+      ;;'(lambda ()
+         ;;(when (derived-mode-p 'rust-mode) 
+	 ;;(ggtags-mode 1))))
+
+;;(global-company-mode) 
+;; Reduce the time after which the company auto completion popup opens
+;;(setq company-idle-delay 0.2)
+
+;; Reduce the number of characters before company kicks in
+;;(setq company-minimum-prefix-length 1)
+;; Set path to racer binary
+(setq racer-cmd "/home/yo/Downloads/racer/new/racer/target/release/racer")
+
+;; Set path to rust src directory
+;;(setq racer-rust-src-path "/Users/YOURUSERNAME/.rust/src/")
+
+;; Load rust-mode when you open `.rs` files
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
+;; Setting up configurations when you load rust-mode
+(add-hook 'rust-mode-hook
+
+     '(lambda ()
+     ;; Enable racer
+     (racer-activate)
+  
+	 ;; Hook in racer with eldoc to provide documentation
+     (racer-turn-on-eldoc)
+	 
+	 ;; Use flycheck-rust in rust-mode
+     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+	 
+	 ;; Use company-racer in rust mode
+     (set (make-local-variable 'company-backends) '(company-racer))
+	 
+	 ;; Key binding to jump to method definition
+     (local-set-key (kbd "M-.") #'racer-find-definition)
+	 
+	 ;; Key binding to auto complete and indent
+     (local-set-key (kbd "TAB") #'racer-complete-or-indent)))
+
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+
+(setq company-tooltip-align-annotations t)
+
+
+;;(require 'go-mode-load)
+(add-hook 'before-save-hook 'gofmt-before-save)
+
+(add-hook 'go-mode-hook (lambda ()
+                          (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)))
+
+(setenv "GOPATH" "/home/yo/Downloads/proj/goprojects")
+(defun go-mode-setup ()
+ (setq compile-command "go build -v && go test -v && go vet")
+ (define-key (current-local-map) "\C-c\C-c" 'compile)
+ (go-eldoc-setup)
+ (setq gofmt-command "goimports")
+ (add-hook 'before-save-hook 'gofmt-before-save)
+ (require 'company)                                   
+ (require 'company-go) 
+
+ (set 
+ (make-local-variable 'company-backends) '(company-go))
+ (company-mode)
+ 
+(setq company-tooltip-limit 20)                      ; bigger popup window
+(setq company-idle-delay .3)                         ; decrease delay before autocompletion popup shows
+(setq company-echo-delay 0)                          ; remove annoying blinking
+(setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+ (local-set-key (kbd "M-.") 'godef-jump))
+(add-hook 'go-mode-hook 'go-mode-setup)
+
+(custom-set-faces
+ '(company-preview
+   ((t (:foreground "darkgray" :underline t))))
+ '(company-preview-common
+   ((t (:inherit company-preview))))
+ '(company-tooltip
+   ((t (:background "lightgray" :foreground "black"))))
+ '(company-tooltip-selection
+   ((t (:background "steelblue" :foreground "white"))))
+ '(company-tooltip-common
+   ((((type x)) (:inherit company-tooltip :weight bold))
+    (t (:inherit company-tooltip))))
+ '(company-tooltip-common-selection
+   ((((type x)) (:inherit company-tooltip-selection :weight bold))
+    (t (:inherit company-tooltip-selection)))))
+
+(require 'auto-complete-config)
+(ac-config-default)
+(require 'go-autocomplete)
+(require 'auto-complete-config)
+
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 3)
+(setq indent-line-function 'insert-tab)
+
+; (add-to-list 'load-path "/home/yo/.emacs.d/gofly/goflymake")
+; (require 'go-flymake)

@@ -1,22 +1,22 @@
 
 ;; ----- smex-history -----
 (
- tern-get-type
- package-install
- tern-ac-complete
+ eval-buffer
+ company-mode
  auto-complete-mode
- tern-mode
- helm-ag
- ag
+ auto-complete
+ flycheck-mode
+ package-install
+ package-refresh-contents
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 74)
+ (package-install . 98)
  (org-reload . 1)
  (load-file . 1)
  (package-menu-mode . 5)
- (package-initialize . 2)
+ (package-initialize . 3)
  (package-menu-execute . 2)
  (autopair-mode . 4)
  (evernote-login . 5)
@@ -45,7 +45,7 @@
  (Buffer-menu-view . 1)
  (projectile-switch-project . 4)
  (comment-box . 2)
- (comment-region . 2)
+ (comment-region . 3)
  (projectile-run-async-shell-command-in-root . 1)
  (line-number-mode . 2)
  (column-number-mode . 2)
@@ -68,7 +68,7 @@
  (spotify-play . 2)
  (prog-indent-sexp . 1)
  (helm-spotify . 6)
- (package-refresh-contents . 5)
+ (package-refresh-contents . 7)
  (skewer-mode . 4)
  (sdb . 2)
  (save-buffer . 1)
@@ -109,7 +109,7 @@
  (customize-mode . 2)
  (org-clock-menu . 1)
  (customize-face . 1)
- (eval-buffer . 45)
+ (eval-buffer . 57)
  (rainbow-mode . 2)
  (rainbow-delimiters-mode . 7)
  (customize-group . 2)
@@ -121,7 +121,7 @@
  (package-list-packages . 6)
  (indent-region . 1)
  (restclient-mode . 2)
- (eval-expression . 4)
+ (eval-expression . 6)
  (sublimity-mode . 1)
  (hide-body . 2)
  (hide-subtree . 1)
@@ -151,5 +151,9 @@
  (projectile-ack . 1)
  (ag . 2)
  (helm-ag . 2)
- (auto-complete-mode . 2)
+ (auto-complete-mode . 17)
+ (eval-region . 5)
+ (company-mode . 19)
+ (flycheck-mode . 4)
+ (auto-complete . 6)
 )
